@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PascalCompiler", "PascalCompiler\PascalCompiler.csproj", "{CE500F1B-098B-47EA-A9EE-EE630392E1BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE500F1B-098B-47EA-A9EE-EE630392E1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE500F1B-098B-47EA-A9EE-EE630392E1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE500F1B-098B-47EA-A9EE-EE630392E1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE500F1B-098B-47EA-A9EE-EE630392E1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EB99ADF-7335-4C85-91D9-512067592CF5}
+	EndGlobalSection
+EndGlobal
