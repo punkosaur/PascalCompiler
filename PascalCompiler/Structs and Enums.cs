@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,25 +10,26 @@ namespace PascalCompiler
     public enum TokenType
     {
         None = 0,
+        TypeIdent = 4,
         TypeConst = 1,
-        TypeIdent = 2,
-        TypeOper = 3,
-        TypeKeyWord = 4
+        TypeOper = 2,
+        TypeKeyWord = 3
     }
 
 
     public enum TokenCode
     {
         None = 0,// пустота
-        Ident = 1,// идентификатор
+        Ident = 400,// идентификатор
 
-        KWBegin = 101,
-        KWEnd = 102,
-        KWVar = 103,
-        KWIntger = 104,
-        KWReal = 105,
-        KWString = 106,
-        KWBoolean = 107,
+        KWProgram = 101,
+        KWBegin = 102,
+        KWEnd = 103,
+        KWVar = 104,
+        KWIntger = 105,
+        KWReal = 106,
+        KWString = 107,
+        KWBoolean = 108,
 
         ConstInt = 201, // целое
         ConstReal = 202,// вещественное
@@ -48,12 +50,15 @@ namespace PascalCompiler
         OpLaterequal = 311, // <=
         OpGraterequal = 312, // >=
         OpLatergreater = 313, // <>
-        OpRightpar = 314, // (
-        OpLeftpar = 315, // )
-        OpFrightpar = 316, // {
-        OpFleftpar = 317, // }
+        OpRightpar = 314, // )
+        OpLeftpar = 315, // (
+        OpFrightpar = 316, // }
+        OpFleftpar = 317, // {
         OpTwopoints = 318, // ..
-        OpSemicolon = 319 // ;
+        OpSemicolon = 319, // ;
+        OpColon = 320, // :
+        OpPoint = 321, // .
+        OpComma = 322 // ,
     }
 
     internal struct Lexema
@@ -71,6 +76,14 @@ namespace PascalCompiler
             Lexer lex = new Lexer();
             LexemaType = lex.GetLexemaType(lit);
             LexemaCode = lex.GetLexemaCode(this);
+        }
+
+        public Lexema(Lexema l)
+        {
+            LexemaPosition = new TextPosition(l.LexemaPosition);
+            Lexemavalue = l.Lexemavalue;
+            LexemaType = l.LexemaType;
+            LexemaCode = l.LexemaCode;
         }
 
         public override string ToString()
@@ -119,6 +132,42 @@ namespace PascalCompiler
         {
             this.LiteraPosition = literapos;
             this.Literavalue = literavalue;
+        }
+
+    }
+
+
+    internal struct Identifier
+    {
+        public string name;
+        public TokenCode type;
+        bool declared;
+
+        public Identifier(string name, TokenCode type)
+        {
+            this.name = name;
+            this.type = type;
+            this.declared = false;
+        }
+
+        public Identifier Declared()
+        {
+            this.declared = true;
+            return this;
+        }
+
+        public bool IsDeclared()
+        {
+            return declared;        
+        }
+        public TokenCode GetTypeCode()
+        {
+            return type;
+        }
+
+        public override string ToString()
+        {
+            return "name: " + name + " type: " + type + " " + " declared: " + declared;
         }
 
     }

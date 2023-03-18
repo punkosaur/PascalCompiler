@@ -1,47 +1,29 @@
 ﻿
+program baklush:
 
+var
 
+x, obb, t: integer;
+a, a : string;
+y: boolean;
+z: bool;
 
+begin
+y := True;
+x := 5;
+x := 5 + 0.5 ;
+a := "uwu";
+y := (1);
+t := - +3;
+y := ((((((((((-1))))))))));
+x := - - t + 5 * (37 - z) * (42 + -3);
+x := 5+ 3 - ;
+z := 1888;
+x := a;
+baklush := 15;
+x := p;
+x := obb;
+obb := 3;
+x := 5 + obb;
 
-
-
-5 + 14
-12 - 3.14.15
-228     
-(abc13)
-!@#$%^&*()_+ 
-x:=				19
-"Стёпка РастрЁпка";
-25
-
-/*-
---3
-			    
-
-				3.14
-
-				True
-				boolean
-				integer
-
-
-
-
-
-
-
-
-
-						
-								
-									
-										
-
-											
-												
-													
-														
-															
-																
-																	
-																	    
+end.

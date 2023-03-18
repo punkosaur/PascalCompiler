@@ -24,7 +24,22 @@ namespace PascalCompiler
             GetNextLine();
         }
 
-        
+
+        public InOutModule()
+        {
+
+        }
+
+        public void myCR()
+        {
+            Console.WriteLine();
+        }
+
+        public void myPrint(string str)
+        {
+            Console.Write(str);
+        }
+
 
         private void GetNextLine()
         {
@@ -40,7 +55,7 @@ namespace PascalCompiler
                 //Fin();
                 //Exit();
 
-                file.Close();
+                file.Close(); 
                 Environment.Exit(0);
             }
         
@@ -48,10 +63,14 @@ namespace PascalCompiler
 
         public Litera GetNext()
         {
-            while (LastInLine == -1 || IOMTextPosition.charNumber > LastInLine) 
+            if (LastInLine == -1 || IOMTextPosition.charNumber > LastInLine)
             {
-                GetNextLine();
-            
+                while (LastInLine == -1 || IOMTextPosition.charNumber > LastInLine)
+                {
+                    GetNextLine();
+
+                }
+                myCR();
             }
             while (IOMTextPosition.charNumber < LastInLine)
                 if (curline[IOMTextPosition.charNumber] == ' ' || curline[IOMTextPosition.charNumber] == '\t')
@@ -61,6 +80,7 @@ namespace PascalCompiler
             if (IOMTextPosition.charNumber == LastInLine)
                 if (curline[IOMTextPosition.charNumber] == ' ' || curline[IOMTextPosition.charNumber] == '\t')
                 {
+                    myCR();
                     GetNextLine();
                     return GetNext();
                 }
@@ -92,7 +112,7 @@ namespace PascalCompiler
 
                 switch (litval[0])
                 {
-                    case ('+' or '*' or '/' or ';' or '=' or '\'' or ',' or '{' or '}' or '(' or ')' or '[' or ']'):
+                    case ('+' or '*' or '/' or ',' or ';' or '=' or '\'' or ',' or '{' or '}' or '(' or ')' or '[' or ']'):
                         IOMTextPosition.charNumber++;
                         return lit;
                     case (':' or '>'):
@@ -112,6 +132,7 @@ namespace PascalCompiler
                             IOMTextPosition.charNumber++;
                             lit.Literavalue = litval;
                         }
+                        
                         return lit;
 
                     case ('<'):
@@ -151,7 +172,7 @@ namespace PascalCompiler
                             {
                                 if (IOMTextPosition.charNumber < LastInLine && (curline[IOMTextPosition.charNumber + 1] >= '0' 
                                     && curline[IOMTextPosition.charNumber + 1] <= '9'|| 
-                                    curline[IOMTextPosition.charNumber + 1] >= '.'))
+                                    curline[IOMTextPosition.charNumber + 1] == '.'))
                                 {
                                     IOMTextPosition.charNumber++;
                                     litval += curline[IOMTextPosition.charNumber];

@@ -34,7 +34,10 @@ namespace PascalCompiler
                     "=" or
                     ":=" or
                     ";" or
+                    ":" or
                     ".." or
+                    "." or
+                    "," or
                     "*" or
                     "/" or
                     "mod" or
@@ -47,6 +50,7 @@ namespace PascalCompiler
 
                 case ("begin" or
                     "end" or
+                    "program" or
                     "var" or
                     "boolean" or
                     "integer" or
@@ -111,6 +115,7 @@ namespace PascalCompiler
                     string str = lex.Lexemavalue;
                     switch (str)
                     {
+                        case ("program"): return TokenCode.KWProgram;
                         case ("begin"): return TokenCode.KWBegin;
                         case ("end"): return TokenCode.KWEnd;
                         case ("var"): return TokenCode.KWVar;
@@ -152,15 +157,18 @@ namespace PascalCompiler
                         case ("="): return TokenCode.OpEqual;
                         case (":="): return TokenCode.OpAssign;
                         case (";"): return TokenCode.OpSemicolon;
+                        case (":"): return TokenCode.OpColon;
                         case (".."): return TokenCode.OpTwopoints;
+                        case ("."): return TokenCode.OpPoint;
+                        case (","): return TokenCode.OpComma;
                         case ("*"): return TokenCode.OpStar;
                         case ("/"): return TokenCode.OpSlash;
                         case ("div"): return TokenCode.OpDiv;
                         case ("mod"): return TokenCode.OpMod;
-                        case ("("): return TokenCode.OpRightpar;
-                        case (")"): return TokenCode.OpLeftpar;
-                        case ("{"): return TokenCode.OpFrightpar;
-                        case ("}"): return TokenCode.OpFleftpar;
+                        case (")"): return TokenCode.OpRightpar;
+                        case ("("): return TokenCode.OpLeftpar;
+                        case ("}"): return TokenCode.OpFrightpar;
+                        case ("{"): return TokenCode.OpFleftpar;
                         default:
                             return TokenCode.None;
                     }
@@ -178,8 +186,6 @@ namespace PascalCompiler
 
         public void GoScan()
         {
-
-
             //InOutModule IOM = new InOutModule(Filepath);
             while (true)
             {
@@ -190,5 +196,6 @@ namespace PascalCompiler
                 Console.WriteLine(lexema.ToString());
             }
         }
+
     }
 }
